@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cadastro</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background-color: #f5f5f5; }
+        form { background: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { background-color: #2196F3; color: white; padding: 12px; border: none; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #1976D2; }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Editar Cadastro</h2>
+
+    <form action="{{ url_for('update', id=cadastro.id) }}" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="{{ cadastro.nome }}" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" value="{{ cadastro.email }}" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" name="telefone" value="{{ cadastro.telefone }}" required>
+
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" value="{{ cadastro.data_nascimento }}" required>
+
+        <label for="login">Login:</label>
+        <input type="text" name="login" value="{{ cadastro.login }}" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" value="{{ cadastro.senha }}" required>
+
+        <label for="tipo">Tipo:</label>
+        <select name="tipo" required>
+            <option value="aluno" {% if cadastro.tipo == "aluno" %}selected{% endif %}>Aluno</option>
+            <option value="professor" {% if cadastro.tipo == "professor" %}selected{% endif %}>Professor</option>
+         </select>
+
+         <!-- Adicionando o campo de Status: Ativo ou Inativo -->
+         <label for="ativo">Status:</label>
+         <select name="ativo" id="ativo" required>
+             <option value="Ativo" {% if cadastro.ativo == 'Ativo' %}selected{% endif %}>Ativo</option>
+             <option value="Inativo" {% if cadastro.ativo == 'Inativo' %}selected{% endif %}>Inativo</option>
+         </select>
+       
+         <button type="submit">Salvar Alterações</button>
+    </form>
+
+</body>
+</html>
